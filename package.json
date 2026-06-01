@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npx tsc && vite build",
+    "build": "node node_modules/typescript/bin/tsc && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "lint": "npx tsc --noEmit"
+    "lint": "node node_modules/typescript/bin/tsc --noEmit"
   },
   "dependencies": {
     "canvas-confetti": "^1.6.0",
