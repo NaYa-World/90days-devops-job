@@ -95,13 +95,13 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
   // Filter phase helper
   const matchesFilter = (pi: number, d: DayData) => {
     const sl = search.toLowerCase();
-    
+
     // Type Filter
     const typeOk = selectedTypes.length === 0 || d.tasks.some(t => selectedTypes.includes(t.k));
-    
+
     // Status Filter
     const statusOk = !selectedStatus || (
-      selectedStatus === 'incomplete' 
+      selectedStatus === 'incomplete'
         ? dayDone(pi, PHASES[pi].data.indexOf(d)) < dayTotal(pi, PHASES[pi].data.indexOf(d))
         : dayDone(pi, PHASES[pi].data.indexOf(d)) === dayTotal(pi, PHASES[pi].data.indexOf(d))
     );
@@ -117,17 +117,17 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
       <div style={{ marginBottom: '14px' }}>
         <div className="eyebrow">GK's path to a DevOps job</div>
         <h1 className="page-title">
-          DevOps Roadmap <span style={{ color: 'var(--amber)', fontSize: '14px' }}>v4</span>
+          DevOps Roadmap <span style={{ color: 'var(--amber)', fontSize: '14px' }}>NaYaGK</span>
         </h1>
         <p className="page-sub">Build real projects. Ship to GitHub. Get hired.</p>
       </div>
 
       {/* XP/Level Bar */}
       <div className="xp-bar-wrap">
-        <div 
-          className="xp-level-badge" 
-          style={{ 
-            color: levelInfo.lvl.color, 
+        <div
+          className="xp-level-badge"
+          style={{
+            color: levelInfo.lvl.color,
             borderColor: levelInfo.lvl.color,
             background: `rgba(${hexToRgb(levelInfo.lvl.color)}, .07)`
           }}
@@ -138,8 +138,8 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
           <div className="xp-label-row">
             <span>{levelInfo.lvl.title}</span>
             <span>
-              {levelInfo.next 
-                ? `${levelInfo.next.min - levelInfo.xp} XP to ${levelInfo.next.title}` 
+              {levelInfo.next
+                ? `${levelInfo.next.min - levelInfo.xp} XP to ${levelInfo.next.title}`
                 : 'MAX LEVEL 🎉'}
             </span>
           </div>
@@ -176,9 +176,9 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
           <div className="sc-lbl">Total</div>
         </div>
         <div className="sc">
-          <div 
-            className="sc-num" 
-            style={{ 
+          <div
+            className="sc-num"
+            style={{
               background: 'linear-gradient(135deg,#7864ff,#00d9a0)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -231,26 +231,26 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
       <div className="banner">
         <span>🕐</span>
         <span>
-          {doneCount === 0 
+          {doneCount === 0
             ? 'Start your 90-day DevOps journey today. Mark your first task done!'
             : doneCount === totalCount
-            ? '🎉 All 90 days complete! You are a DevOps engineer.'
-            : eta
-            ? `At ${eta.avgPerDay} tasks/day → finish in ~${eta.daysLeft} days (est. ${eta.eta})`
-            : `${totalCount - doneCount} tasks to go. Keep the streak alive!`}
+              ? '🎉 All 90 days complete! You are a DevOps engineer.'
+              : eta
+                ? `At ${eta.avgPerDay} tasks/day → finish in ~${eta.daysLeft} days (est. ${eta.eta})`
+                : `${totalCount - doneCount} tasks to go. Keep the streak alive!`}
         </span>
       </div>
 
       {/* Search Input */}
       <div className="search-wrap" style={{ marginBottom: '5px' }}>
         <span style={{ color: 'var(--muted)', fontSize: '13px' }}>🔍</span>
-        <input 
-          type="text" 
+        <input
+          type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search… (/ to focus)"
         />
-        <button 
+        <button
           onClick={() => { setSearch(''); setSelectedTypes([]); setSelectedStatus(''); }}
           style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--muted)', fontSize: '12px' }}
         >
@@ -261,7 +261,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
       {/* Filter Chips */}
       <div className="sf-wrap">
         {(['concept', 'code', 'quiz', 'project'] as const).map(type => (
-          <button 
+          <button
             key={type}
             className={`sf-chip f-type-${type} ${selectedTypes.includes(type) ? 'active' : ''}`}
             onClick={() => toggleTypeFilter(type)}
@@ -269,14 +269,14 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
             {type}
           </button>
         ))}
-        <button 
+        <button
           className={`sf-chip f-status ${selectedStatus === 'incomplete' ? 'active' : ''}`}
           style={{ color: 'var(--amber)' }}
           onClick={() => toggleStatusFilter('incomplete')}
         >
           incomplete
         </button>
-        <button 
+        <button
           className={`sf-chip f-status ${selectedStatus === 'done' ? 'active' : ''}`}
           style={{ color: 'var(--green)' }}
           onClick={() => toggleStatusFilter('done')}
@@ -287,14 +287,14 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
 
       {/* Phase Filters */}
       <div className="filter-bar">
-        <button 
-          className={`fpill ${phaseFilter === 'all' ? 'active' : ''}`} 
+        <button
+          className={`fpill ${phaseFilter === 'all' ? 'active' : ''}`}
           onClick={() => setPhaseFilter('all')}
         >
           All Phases
         </button>
         {PHASES.map((ph, pi) => (
-          <button 
+          <button
             key={pi}
             className={`fpill ${phaseFilter === String(pi) ? 'active' : ''}`}
             onClick={() => setPhaseFilter(String(pi))}
@@ -319,9 +319,9 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
           if (filteredDays.length === 0) return null;
 
           return (
-            <div 
+            <div
               key={pi}
-              className="phase-card" 
+              className="phase-card"
               style={{
                 borderColor: ph.color,
                 // Assigning colors for use in component variables
@@ -347,16 +347,16 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                     {phPct}%
                   </span>
                 )}
-                <svg 
-                  width="13" 
-                  height="13" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2.5" 
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
                   style={{ color: 'var(--sub)', flexShrink: 0, transition: 'transform .3s', transform: `rotate(${isOpen ? 180 : 0}deg)` }}
                 >
-                  <polyline points="6 9 12 15 18 9"/>
+                  <polyline points="6 9 12 15 18 9" />
                 </svg>
               </div>
 
@@ -384,7 +384,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                                 {avgConf > 0 && ` ⭐${avgConf.toFixed(1)}`}
                               </span>
                               <svg className={`day-chev ${dOpen ? 'open' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                <polyline points="6 9 12 15 18 9"/>
+                                <polyline points="6 9 12 15 18 9" />
                               </svg>
                             </div>
 
@@ -409,11 +409,11 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                                     const tidStr = `p${pi}d${originalDi}t${ti}`;
                                     const done = !!state.completedTasks[tidStr];
                                     const conf = getConf(pi, originalDi, ti);
-                                    
+
                                     return (
                                       <div key={ti} className="task-row">
-                                        <div 
-                                          className={`task-check ${done ? 'done' : ''}`} 
+                                        <div
+                                          className={`task-check ${done ? 'done' : ''}`}
                                           onClick={() => handleTaskToggle(pi, originalDi, ti)}
                                         >
                                           {done && '✓'}
@@ -423,8 +423,8 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                                           <div className="conf-row">
                                             <span className="conf-label">conf:</span>
                                             {[1, 2, 3, 4, 5].map(v => (
-                                              <span 
-                                                key={v} 
+                                              <span
+                                                key={v}
                                                 className={`conf-star ${conf >= v ? 'on' : ''}`}
                                                 onClick={() => setConf(pi, originalDi, ti, conf === v ? 0 : v)}
                                               >
@@ -444,19 +444,19 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                                   })}
 
                                   {/* Notes Widget */}
-                                  <NotesWidget 
-                                    pi={pi} 
-                                    di={originalDi} 
-                                    getNote={getNote} 
-                                    setNote={setNote} 
+                                  <NotesWidget
+                                    pi={pi}
+                                    di={originalDi}
+                                    getNote={getNote}
+                                    setNote={setNote}
                                   />
 
                                   {/* AI Brief Widget */}
-                                  <AIBriefWidget 
-                                    pi={pi} 
-                                    di={originalDi} 
-                                    day={d.day} 
-                                    label={d.label} 
+                                  <AIBriefWidget
+                                    pi={pi}
+                                    di={originalDi}
+                                    day={d.day}
+                                    label={d.label}
                                     phaseTitle={ph.title}
                                     tasks={d.tasks}
                                     note={getNote(pi, originalDi)}
@@ -500,7 +500,7 @@ const NotesWidget: React.FC<NotesWidgetProps> = ({ pi, di, getNote, setNote }) =
   return (
     <div className="notes-widget">
       <div className="notes-label">📝 NOTES</div>
-      <textarea 
+      <textarea
         className="notes-ta"
         value={noteVal}
         onChange={(e) => setNoteVal(e.target.value)}
@@ -599,7 +599,7 @@ const AIBriefWidget: React.FC<AIBriefWidgetProps> = ({
           </button>
         </div>
       </div>
-      
+
       <div className="ai-brief-body" id={`ai-brief-content-${pi}_${di}`}>
         {loadingBrief ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--sub)', fontSize: '13px' }}>
@@ -630,7 +630,7 @@ const AIBriefWidget: React.FC<AIBriefWidgetProps> = ({
               const isSelected = selectedOpt === oIdx;
               const isCorrect = oIdx === quiz.answer;
               const hasAnswered = selectedOpt !== null;
-              
+
               let style: React.CSSProperties = {
                 textAlign: 'left',
                 background: 'var(--s3)',

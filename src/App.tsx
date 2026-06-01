@@ -215,8 +215,16 @@ export const App: React.FC = () => {
         <div className="nav-brand" onClick={() => handleNavItemClick('roadmap')} style={{ cursor: 'pointer' }}>
           <span className="g">DEV</span>
           <span className="p">OPS</span>
+          <span className='v2'>by NaYaWorldGK</span>
         </div>
         <div className="nav-tabs">
+          <button
+            className={`nav-tab ${currentView === 'roadmap-v2' ? 'active' : ''}`}
+            onClick={() => handleNavItemClick('roadmap-v2')}
+            style={{ background: currentView === 'roadmap-v2' ? 'rgba(0,217,160,.15)' : undefined, color: currentView === 'roadmap-v2' ? 'var(--green)' : undefined }}
+          >
+            💥 v2 Roadmap
+          </button>
           <button
             className={`nav-tab ${currentView === 'roadmap' ? 'active' : ''}`}
             onClick={() => handleNavItemClick('roadmap')}
