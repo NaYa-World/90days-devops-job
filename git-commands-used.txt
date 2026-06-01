@@ -1,0 +1,78 @@
+Git Commands Used & Their Purpose
+===================================
+
+1. git status
+   Purpose: Check the current state of the working directory — shows modified,
+   deleted, and untracked files, and which branch you are on.
+
+2. git diff
+   Purpose: Show line-by-line changes in tracked files that have not been staged
+   yet. Used to inspect what exactly changed in dist/index.html and other files.
+
+3. git branch -a
+   Purpose: List all local and remote branches. Helped identify that the repo
+   has two branches: "fontsize-adjusted" (current) and "main".
+
+4. git log -n 10 --oneline
+   Purpose: Show the last 10 commits in a compact one-line format. Used to
+   understand the recent commit history and what features were added.
+
+5. git stash list
+   Purpose: List all stashed changes. Checked whether any code had been
+   temporarily saved in a stash (there were none).
+
+6. git status --ignored
+   Purpose: Same as git status but also shows files ignored by .gitignore.
+   Used to check if any relevant files were being hidden by ignore rules.
+
+7. git diff main...fontsize-adjusted --name-status
+   Purpose: Compare the current branch (fontsize-adjusted) against main and
+   show only file names with their status (Modified/Added/Deleted). Gave a
+   quick overview of all files changed between the two branches.
+
+8. git diff main...fontsize-adjusted -- src/App.tsx
+   Purpose: Show the detailed line-by-line diff of src/App.tsx between the
+   main branch and the fontsize-adjusted branch. Used to understand what
+   features (font size controls) were added in the current branch.
+
+
+NPM / NPX Commands Used & Their Purpose
+=========================================
+
+1. npx tsc --noEmit
+   Purpose: Run the TypeScript compiler without producing output files. Used
+   to verify that all .ts and .tsx files compile without type errors after
+   adding the new phasesV2.ts, RoadmapV2View.tsx, and App.tsx changes.
+
+2. npm run dev
+   Purpose: Start the Vite development server (runs "vite" under the hood).
+   Used to confirm the app loads successfully at http://localhost:5173/
+   with the newly added Roadmap v2 view and hamburger menu entry.
+
+3. npm run build
+   Purpose: Runs "tsc && vite build" — first type-checks the entire project
+   with TypeScript, then bundles and minifies the app for production into
+   the dist/ folder. Use this before deploying to a live server.
+
+4. npm run preview
+   Purpose: Runs "vite preview" — serves the production build from dist/
+   locally so you can test the final output before deploying. Useful to
+   catch issues that only appear in the optimised production bundle.
+
+5. npm test
+   Purpose: Runs "vitest run" — executes all test files (*.test.ts/tsx)
+   once and exits. Used for CI pipelines or quick one-off test checks.
+
+6. npm run test:watch
+   Purpose: Runs "vitest" in watch mode — re-runs affected tests
+   automatically whenever you save a file. Ideal during active development.
+
+7. npm run lint
+   Purpose: Runs "tsc --noEmit" — performs a full TypeScript type-check
+   without generating any output files. Catches type errors, missing
+   imports, and interface mismatches across the entire codebase.
+
+8. npm install
+   Purpose: Reads package.json and installs all dependencies listed under
+   "dependencies" and "devDependencies" into the node_modules/ folder.
+   Run this after cloning the repo or when package.json changes.
